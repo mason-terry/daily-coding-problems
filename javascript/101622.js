@@ -25,11 +25,9 @@ const findLargestRectangle = (hist) => {
   let height = 0;
   let length = 0;
   let area = -Infinity;
-  let oldArea = -Infinity;
+  let total = -Infinity;
   for (let i = 0; i < hist.length; i++) {
-    // 1, 3, 2, 5
     area = -Infinity;
-    oldArea = -Infinity;
     length = 0;
     height = 0;
     height = hist[i];
@@ -38,33 +36,33 @@ const findLargestRectangle = (hist) => {
       if (hist[j] >= height) {
         length++;
         if (height * length > area) {
-          oldArea = area;
           area = height * length;
         }
       }
       if (hist[j] < height) {
+        area = length * height;
         height = hist[j];
         length++;
         if (height * length > area) {
-          oldArea = area;
           area = height * length;
         }
       }
     }
+    if (area > total) {
+      total = area;
+    }
   }
-
-  area = height * length;
-
-  console.log({ height });
-  console.log({ length });
-  console.log({ area });
-  console.log({ oldArea });
-  return hist;
+  return total;
 };
 
-const hist = [1, 5, 2, 3];
-const height = 0;
-const length = 0;
-const area = 0;
+const hist1 = [1, 5, 2, 3];
+const hist2 = [4, 4, 5, 6];
+const hist3 = [2, 4, 5, 6];
+const hist4 = [4, 10, 2, 2];
+const hist5 = [4, 10, 21, 2];
 
-console.log(findLargestRectangle(hist));
+console.log("Should be 6:", findLargestRectangle(hist1));
+console.log("Should be 16:", findLargestRectangle(hist2));
+console.log("Should be 12:", findLargestRectangle(hist3));
+console.log("Should be 10:", findLargestRectangle(hist4));
+console.log("Should be 21:", findLargestRectangle(hist5));
