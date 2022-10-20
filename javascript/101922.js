@@ -18,6 +18,9 @@ const findWord = (matrix, word) => {
   for (let i = 0; i < matrix.length; i++) {
     found = findLeftToRightWord(matrix[i], word);
     if (!found) {
+      if (wordArr.length > matrix.length) {
+        return false;
+      }
       found = findUpToDownWord(matrix[i], word, i);
     }
   }
@@ -26,6 +29,9 @@ const findWord = (matrix, word) => {
 
 const findLeftToRightWord = (row, word) => {
   let wordArr = word.split("");
+  if (wordArr.length > row.length) {
+    return false;
+  }
   if (row.includes(...wordArr)) {
     return true;
   }
@@ -34,7 +40,9 @@ const findLeftToRightWord = (row, word) => {
 
 const findUpToDownWord = (row, word, index) => {
   let wordArr = word.split("");
-  for (let i = 0; i < row.length; i++) {}
+  for (let i = 0; i < row.length; i++) {
+    console.log(`index: ${index} i: ${i}`);
+  }
 };
 
 const testOne = [
