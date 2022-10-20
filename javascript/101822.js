@@ -7,45 +7,28 @@ For example, given the array [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 
 */
 
 const longestIncreasingSubsequence = (arr) => {
-  // let ln = arr.length - 1;
-  // let lis = [];
-  // let maxLen = -Infinity;
-  //
-  // for (let i = 0; i <= ln; i++) {
-  //   lis[i] = 1;
-  // }
-  //
-  // for (let i = 1; i <= ln; i++) {
-  //   for (let j = 0; j <= i; j++) {
-  //     if (arr[j] < arr[i] && lis[i] < lis[j] + 1) {
-  //       lis[i] = lis[j] + 1;
-  //     }
-  //   }
-  // }
-  //
-  // for (let i = 0; i < lis.length; i++) {
-  //   if (lis[i] > maxLen) {
-  //     maxLen = lis[i];
-  //   }
-  // }
-  // return maxLen;
-
+  let ln = arr.length - 1;
   let lis = [];
-  for (let i = 0; i < arr.length; i++) {
+  let maxLen = -Infinity;
+
+  for (let i = 0; i <= ln; i++) {
     lis[i] = 1;
   }
 
-  for (let i = arr.length - 1; i >= 0; i--) {
-    console.log(`ARR[i]: ${arr[i]}`);
-    for (let j = i + 1; j >= 0; j--) {
-      console.log(`ARR[j]: ${arr[j]}`);
-      if (arr[i] < arr[j]) {
-        lis[i] = Math.max(lis[i], lis[j] + 1);
+  for (let i = 1; i <= ln; i++) {
+    for (let j = 0; j <= i; j++) {
+      if (arr[j] < arr[i] && lis[i] < lis[j] + 1) {
+        lis[i] = lis[j] + 1;
       }
     }
   }
 
-  return lis;
+  for (let i = 0; i < lis.length; i++) {
+    if (lis[i] > maxLen) {
+      maxLen = lis[i];
+    }
+  }
+  return maxLen;
 };
 
 const testOne = [0, 8, 4, 12, 2, 10, 6, 14, 1, 9, 5, 13, 3, 11, 7, 15];

@@ -14,24 +14,27 @@ and the target word 'FOAM', you should return true, since it's the leftmost colu
  * */
 
 const findWord = (matrix, word) => {
-  let wordArr = word.split("");
-  console.log({ wordArr });
+  let found = false;
   for (let i = 0; i < matrix.length; i++) {
-    console.log(`${matrix[i]}`);
-    findWordInRow(matrix[i], wordArr);
-  }
-  console.log({ word });
-  return matrix;
-};
-
-const findWordInRow = (row, wordArr) => {
-  for (let i = 0; i < wordArr.length; i++) {
-    console.log(`${wordArr[i]}`);
-    for (let j = 0; j < row.length; j++) {
-      console.log(`${row[j]}`);
+    found = findLeftToRightWord(matrix[i], word);
+    if (!found) {
+      found = findUpToDownWord(matrix[i], word, i);
     }
   }
-  return;
+  return found;
+};
+
+const findLeftToRightWord = (row, word) => {
+  let wordArr = word.split("");
+  if (row.includes(...wordArr)) {
+    return true;
+  }
+  return false;
+};
+
+const findUpToDownWord = (row, word, index) => {
+  let wordArr = word.split("");
+  for (let i = 0; i < row.length; i++) {}
 };
 
 const testOne = [
