@@ -14,3 +14,7 @@ assert mapsum.sum("col") == 3
 mapsum.insert("column", 2)
 assert mapsum.sum("col") == 5
 */
+
+const prefixMapSum = () => {
+  return "prefixMapSum";
+};
