@@ -8,8 +8,19 @@ For example, the input [3, 4, -1, 1] should give 2. The input [1, 2, 0] should g
 You can modify the input array in-place.
 */
 
-const solution = () => {
-  return true;
+const solution = (arr) => {
+  let res = Infinity;
+  for (let i = 0; i < arr.length; i++) {
+    let n = arr[i] - 1;
+    if (n < res && n > 0) {
+      res = arr[i];
+    }
+  }
+  return res;
 };
 
-console.log(`test one: ${solution()}`);
+const testOne = [3, 4, -1, 1];
+const testTwo = [1, 2, 0];
+
+console.log(`test one: ${solution(testOne)}`);
+console.log(`test two: ${solution(testTwo)}`);
